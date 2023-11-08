@@ -1,0 +1,30 @@
+<%
+const config = {};
+config.path = './';
+config.isTop = true;
+config.pid = 'top';
+config.uid = 'top';
+config.style = ['style.css'];
+config.script = ['top.js'];
+%>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<%- include('./ejs/include/head_start', {config:config}) %>
+<%- include('./ejs/include/meta', {config:config}) %>
+<%- include('./ejs/include/style', {config:config}) %>
+<%- include('./ejs/include/head_end', {config:config}) %>
+</head>
+<body class="p-<%- config.pid %>">
+<%- include('./ejs/layout/header') %>
+<%- include('./ejs/layout/footer') %>
+<main>
+  <p>aaaaa</p>
+  <!-- hhhhhh -->
+</main>
+
+
+<%- include('./ejs/include/script', {config:config}) %>
+<%- include('./ejs/include/body_end', {config:config}) %>
+</body>
+</html>

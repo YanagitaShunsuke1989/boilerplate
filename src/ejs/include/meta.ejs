@@ -1,0 +1,32 @@
+<% config.path = config.path || '';
+const _default = setting['default'];
+const meta = (config.uid in setting) ? setting[config.uid] : undefined;
+const domain = _default.url;
+if (meta) {
+  for ( const key in _default ) {
+    if (meta[key] == undefined) {
+      if (meta.inherit != undefined) {
+        meta[key] = json[meta.inherit][key];
+      }
+      meta[key] = meta[key] || _default[key];
+    }
+    else if (key == "url" && meta.url.indexOf('http') == -1) {
+      meta.url = domain + meta.url;
+    }
+  };
+} else {
+  meta = _default;
+}
+meta.description = config.description || meta.description
+meta.keywords = config.keywords || meta.keywords %>
+<meta name="viewport" content="width=device-width">
+<meta charset="utf-8">
+<title><%= meta.title %></title>
+<meta name="description" content="<%= meta.description %>">
+<meta property="og:type" content="<%= config.isTop ? 'website' : 'article' %>">
+<meta property="og:site_name" content="<%= meta.site_name %>">
+<meta property="og:title" content="<%= meta.title %>">
+<meta property="og:description" content="<%= meta.description %>">
+<meta property="og:url" content="<%= meta.url %>">
+<meta property="og:image" content="<%= meta.ogp %>">
+<meta name="twitter:card" content="summary_large_image">

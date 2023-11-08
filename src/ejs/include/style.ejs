@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="<%-config.path%>assets/css/reset.css">
+<link rel="stylesheet" href="<%-config.path%>assets/css/common.css">
+<% if (config.style && config.style.length) {
+  config.style.forEach((style)=>{
+    var path = config.path + 'assets/css/' + style;
+    if (/^(https?:|\/).+\.css$/.test(style)) {
+      path = style;
+    }
+    if (/\.css$/.test(path)) {%>
+<link rel="stylesheet" href="<%-path%>">
+    <% }
+  })
+}
+%>

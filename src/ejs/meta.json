@@ -1,0 +1,19 @@
+{
+  "default": {
+    "site_name": "サイト名）デフォルト",
+    "title": "タイトル）デフォルト",
+    "url": "https://www.yahoo.co.jp/",
+    "ogp": "http://***/assets/img/common/ogp.png",
+    "favicon": "",
+    "touchIcon": "",
+    "keywords": "",
+    "description": "ディスクリプション",
+    "thumbnail": ""
+  },
+  "top": {
+    "title": "タイトル）トップページ",
+    "url": "https://www.yahoo.co.jp/",
+    "ogp": "http://***/assets/img/common/ogp.png",
+    "description": "ディスクリプション）トップページ"
+  }
+}

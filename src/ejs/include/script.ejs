@@ -1,0 +1,14 @@
+<script src="<%-config.path%>assets/js/vendor.js" defer></script>
+<script src="<%-config.path%>assets/js/common.js" defer></script>
+<% if (config.script && config.script.length) {
+  config.script.forEach((script)=>{
+    var path = config.path + 'assets/js/' + script;
+    if (/^(https?:|\/).+\.js$/.test(script)) {
+      path = script;
+    }
+    if (/\.js$/.test(path)) {%>
+<script src="<%-path%>" defer></script>
+    <% }
+  })
+}
+%>

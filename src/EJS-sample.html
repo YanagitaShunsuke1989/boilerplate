@@ -1,0 +1,118 @@
+<% const meta = {
+  title: 'サンプルのタイトル',
+  description: 'サンプルのディスクリプション',
+  path: '.'
+} %>
+
+// このタグの内側はjsとして記述できる。htmlとして出力されない
+<% var myParam = 'Hello! EJS!'; %>
+
+// 変数の値をエスケープ込みで展開
+<%= myParam %>
+
+// エスケープなしで展開する場合
+<%- %>
+
+// コメント、htmlに出力しない
+<%# %>
+
+// 通常は使わないが、Yeoman等でEJS自体をEJSでテンプレート化したい時に<% %>のエスケープとして使用する。
+<%% %>
+
+// 第一引数に読み込むEJSファイルへの相対パス
+// 第二引数にそのEJSに渡すパラメータを指定できる。
+// パスは拡張子の「.ejs」を省略
+<%- include('./***', {param:'param'}) %>
+
+// include()関数と違い、
+// パラメータを投げられない
+// パスを変数から作れない
+// というデメリットがあるので、include()関数を使う方が便利。
+<% include _partial %>
+
+// varをつけないとグローバル変数
+<% var hoge = 'hoge'; %>
+<% foo = 'foo'; %>
+
+// オブジェクトのキー名が、子ファイルのローカル変数名と対応する。
+<% var myData = {head:'Head text', body:'Body text'}; %>
+<% include('two.ejs', {var1:'hoge', data:myData}); %>
+
+<section class="<%= var1 %>">
+  <h2><%= data.head %></h2>
+  <p><%= data.body %></p>
+</section>
+
+// 子に投げていないキー名をいきなり参照しようとするとエラーになってしまう。
+// キー名があるかどうか分からない場合は、変数がundefinedの時は初期値をセットするようにするとエラーにならない。
+if (typeof var1 === 'undefined') { var var1 = ''; }
+if (typeof data === 'undefined') { var data = {head:'default', body:'default'}; }
+
+<section class="<%= var1 %>">
+  <h2><%= data.head %></h2>
+  <p><%= data.body %></p>
+</section>
+
+// ループ
+// for
+<% for (var i = 0; i < 10; i++) { %>
+<p>このループは<%= i+1 %>回目です。</p>
+<% } %>
+
+// while
+<% var counter = 1; %>
+<% while (counter <= 10) { %>
+<p>このループは<%= counter %>回目です。</p>
+<% counter++; %>
+<% } %>
+
+<% var ary = ['アイテム1', 'アイテム2', 'アイテム3']; %>
+<% ary.forEach(function (value, key) { %>
+<p><%= key %>: <%= value %></p>
+<% }); %>
+
+// for...in, for...of
+<% var ary = ['アイテム1', 'アイテム2', 'アイテム3']; %>
+<% for (var key in ary) { %>
+<p><%= ary[key] %></p>
+<% } %>
+<% for (var item of ary) { %>
+<p><%= item %></p>
+<% } %>
+
+// if
+<% if (data.type === 'type1') { %>
+<p class="type1">This template is for type1.</p>
+
+<% } else if (data.type === 'type2') { %>
+<p class="type2">This template is for type2.</p>
+
+<% } else { %>
+<!-- else -->
+<% } %>
+
+// switch
+<% var text = ''; %>
+<% var state = 0; %>
+<% switch ( state ) {
+  case 0:
+    text = 'case0';
+    break;
+  case 1:
+    text = 'case1';
+    break;
+} %>
+<p><%= text %></p>
+
+// 関数
+<%# generateItem関数を定義 %>
+<% var generateItem = function(name, dataList){ %>
+  <ul class="<%= name %>">
+    <% dataList.forEach(function (dataItem, index) { %>
+      <li class="<%= name + '__' + index %>"><%= dataItem %></li>
+    <% }); %>
+  </ul>
+<% }; %>
+
+<%# ここで定義した関数を実行 %>
+<%- generateItem('item-list', ['ホーム', '新着情報', '会社概要']); %>

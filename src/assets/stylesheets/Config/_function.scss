@@ -1,0 +1,78 @@
+
+// Size -----------------------------------------------
+
+@function vw($size, $base:null) {
+  //@return vw-sp($size, $base);
+  $rem: $size * 0.1;
+  @return $rem + rem;
+}
+@function vw-pc($size, $base:null) {
+  @if $base == null {
+    $base: $design-pc;
+  }
+  @if $size != 0 {
+    $vw: ($size * 100 / $base);
+    $vw: floor($vw * 1000) / 1000;
+    @return $vw  + vw;
+  }
+  @return 0;
+}
+@function vw-sp($size, $base) {
+  @if $base == null {
+    $base: $design-sp;
+  }
+  @if $size != 0 {
+    $vw: ($size * 100 / $base);
+    $vw: floor($vw * 1000) / 1000;
+    @return $vw  + vw;
+  }
+  @return 0;
+}
+@function vh($size, $w:800) {
+  @if $size != 0 {
+    $vw: ($size * 100 / $w);
+    $vw: floor($vw * 1000) / 1000;
+    @return $vw  + vh;
+  }
+  @return 0;
+}
+@function px($size:0) {
+  @if $size != 0 {
+    $w: ($size * 100);
+    $w: floor($w) / 100;
+    @return $w + px;
+  }
+  @return 0;
+}
+@function rem($size, $base:null) {
+  //@if $base == null {
+  //  $base: 16;
+  //}
+  //$rem: $size / $base;
+  //$rem: floor($rem * 100) / 100;
+  $rem: $size * 0.1;
+  @return $rem + rem;
+}
+@function pc($size, $base:null) {
+  $rem: $size * 0.1;
+  @return $rem + rem;
+}
+@function sp($size, $base:null) {
+  $rem: $size * 0.1;
+  @return $rem + rem;
+}
+
+@function per($size:0, $base:0) {
+  $per: ($size * 100 / $base);
+  $per: floor($per * 1000) / 1000;
+  @return $per + 0%;
+}
+
+@function per-pc($size:0, $base:null) {
+  @if $base == null {
+    $base: $design-pc;
+  }
+  $per: ($size * 100 / $base);
+  $per: floor($per * 1000) / 1000;
+  @return $per + 0%;
+}

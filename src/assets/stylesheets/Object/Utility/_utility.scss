@@ -1,0 +1,53 @@
+@use "../../Config/import" as *;
+
+// sp, pc
+// ----------------------------------------------------------
+.sp {
+  display: none;
+}
+.pc {
+  display: block;
+}
+
+@include media-sp {
+  .sp {
+    display: block;
+  }
+  .pc {
+    display: none;
+  }
+}
+
+// margin padding
+// ----------------------------------------------------------
+$space: 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
+@each $prefix in $space {
+  // top
+  .mt#{$prefix} {
+    margin-top: #{$prefix}px !important;
+  }
+  .pt#{$prefix} {
+    padding-top: #{$prefix}px !important;
+  }
+  // right
+  .mr#{$prefix} {
+    margin-right: #{$prefix}px !important;
+  }
+  .pr#{$prefix} {
+    padding-right: #{$prefix}px !important;
+  }
+  // bottom
+  .mb#{$prefix} {
+    margin-bottom: #{$prefix}px !important;
+  }
+  .pb#{$prefix} {
+    padding-bottom: #{$prefix}px !important;
+  }
+  // left
+  .ml#{$prefix} {
+    margin-left: #{$prefix}px !important;
+  }
+  .pl#{$prefix} {
+    padding-left: #{$prefix}px !important;
+  }
+}

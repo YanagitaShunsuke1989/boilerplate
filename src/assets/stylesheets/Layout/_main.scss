@@ -1,0 +1,6 @@
+@use "../Config/import" as *;
+
+main {
+  color: $color-red;
+  font-size: vw(20px);
+}
